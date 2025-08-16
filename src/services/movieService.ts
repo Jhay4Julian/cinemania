@@ -17,3 +17,24 @@ export const fetchUpcomingMovies = () => movieApi.get('/movie/upcoming');
 export const fetchNowPlayingMovies = () => movieApi.get('/movie/now_playing');
 export const fetchMovieById = (movieId: string) => movieApi.get(`movie/${movieId}`);
 export const fetchMovieTrailer = (movieId: string) => movieApi.get(`movie/${movieId}/videos`);
+
+export const fetchPopularShows = () => movieApi.get('/tv/popular');
+export const fetchTopRatedShows = () => movieApi.get('/tv/top_rated');
+export const fetchShowById = (showId: string) => movieApi.get(`tv/${showId}`);
+export const fetchShowTrailer = (showId: string) => movieApi.get(`tv/${showId}/videos`);
+export const fetchShowCredits = (showId: string) => movieApi.get(`tv/${showId}/credits`)
+
+export const searchMulti = async (query: string) => {
+    if (!query.trim()) return [];
+    const response = await movieApi.get("/search/multi",{
+        params: { query },
+    });
+
+    interface MultiItemType {
+        media_type: string;
+    }
+
+    return response.data.results.filter(
+        (item: MultiItemType) => item.media_type === "movie" || item.media_type === "tv"
+    )
+}
