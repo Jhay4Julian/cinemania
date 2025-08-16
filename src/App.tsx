@@ -23,7 +23,8 @@ function App() {
             <Route path='/movie/:id' element={<MovieDetails />} />
             <Route path='/tv/:id' element={<ShowDetails />} />
             <Route path='/search' element={<SearchPage />} />
-            {/* <Route path='/boards' element={<AllBoardsPage />} /> */}
+            {/* <Route path='/boards' element={<AllBoardsPage />} />
+            <Route path='/boards/:id' element={<BoardPage />} /> */}
             <Route path='*' element={<div className='p-10'>404 - Page Not Found</div>} />
           </Routes>
         </div>

@@ -23,7 +23,7 @@ const Home = () => {
 
     const loadMovies = async () => {
         try {
-            const [trendingRes, topRatedRes, upcomingRes, nowPlayingRes] = await Promise.all([
+            const [trendingRes, topRatedRes, upcomingRes] = await Promise.all([
                 fetchTrendingMovies(),
                 fetchTopRatedMovies(),
                 fetchUpcomingMovies(),
