@@ -17,7 +17,6 @@ const Home = () => {
     const [trending, setTrending] = useState<Movie[]>([]);
     const [topRated, setTopRated] = useState<Movie[]>([]);
     const [upcoming, setUpcoming] = useState<Movie[]>([]);
-    const [nowPlaying, setNowPlaying] = useState<Movie[]>([]);
     const [type, setType] = useState<"movie" | "show">("movie");
     const [popularShow, setPopularShow] = useState<Show[]>([]);
     const [ratedShow, setRatedShow] = useState<Show[]>([]);
@@ -34,7 +33,6 @@ const Home = () => {
             setTrending(trendingRes.data.results);
             setTopRated(topRatedRes.data.results);
             setUpcoming(upcomingRes.data.results);
-            setNowPlaying(nowPlayingRes.data.results);
         } catch (error) {
             console.error('Failed to load movies:', error);
         }
@@ -86,7 +84,6 @@ const Home = () => {
                 <>
                     <div className='mb-9'></div>
                     <MovieSection title="Trending" movies={trending} />
-                    {/* <MovieSection title="Now Playing" movies={nowPlaying} /> */}
                     <MovieSection title="Top Rated" movies={topRated} />
                     <MovieSection title="Upcoming" movies={upcoming} />
                 </>
