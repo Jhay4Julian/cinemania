@@ -46,35 +46,50 @@ const MovieDetails = () => {
     if (!movie) return <p className="p-6">Movie not found.</p>
 
     const imageUrl = `http://image.tmdb.org/t/p/w500${movie.poster_path}`;
+    const backdropUrl = `https://image.tmdb.org/t/p/original${movie.backdrop_path}`;
 
     return (
-        <div className="p-6 max-w-4xl mx-auto">
-            <Link to="/" className="text-blue-600 hover:underline">&larr; Back</Link>
+        // <div className="p-6 max-w-4xl mx-auto">
+        <div className="relative w-full h-full min-h-screen text-white">
 
-            <div className="mt-6 flex flex-col md:flex-row gap-6">
-                <img src={imageUrl} alt={movie.title} className="rounded-lg w-full md:w-64" />
-
-                <div>
-                    <h2 className="text-3xl font-bold mb-2">{movie.title}</h2>
-                    <p className="text-gray-600 text-sm mb-4">
-                        Release Date: {movie.release_date} | Rating: ⭐ {movie.vote_average}
-                    </p>
-                    <p className="text-lg text-gray-800">{movie.overview}</p>
-                </div>
+            <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${backdropUrl})` }}
+            >
+                <div className="absolute inset-0 bg-black/50 backdrop-blur"></div>
             </div>
-            {trailerKey && (
-                <div>
-                    <h1 className="text-xl font-bold mb-2">Watch Trailer</h1>
-                    <iframe
-                        src={`https://www.youtube.com/embed/${trailerKey}`}
-                        width="100%"
-                        height="400"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    />
+
+
+            <div className="p-6 mr-10">
+                <Link to="/" className="relative text-blue-400 text-lg font-bold hover:underline">&larr; Back</Link>
+
+                <div className="relative z-10 mt-6 flex flex-col md:flex-row gap-6">
+                    <img src={imageUrl} alt={movie.title} className="rounded-lg w-full md:w-64" />
+
+                    <div>
+                        <h2 className="text-3xl font-bold mb-2">{movie.title}</h2>
+                        <p className=" text-sm mb-4">
+                            Release Date: {movie.release_date} | Rating:  {movie.vote_average}⭐
+                        </p>
+                        <p className="text-lg">{movie.overview}</p>
+                    </div>
                 </div>
-            )}
+
+                {trailerKey && (
+                    <div className="relative">
+                        <h1 className="text-xl font-bold mb-2 mt-4">Watch Trailer</h1>
+                        <iframe
+                            className="rounded-xl"
+                            src={`https://www.youtube.com/embed/${trailerKey}`}
+                            width="100%"
+                            height="400"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                        />
+                    </div>
+                )}
+            </div>
         </div>
     )
 }
